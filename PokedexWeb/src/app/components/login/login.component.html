@@ -1,0 +1,42 @@
+<div class="row bg-pokemon align-items-center justify-content-end">
+    <div class="col-md-6">
+        <div class="container">
+            <div class="card card-container">
+                <img id="profile-img" class="rounded mx-auto d-block mb-3 mt-3" src="assets/images/avatar.jpg" width="200px"
+                    height="200px" />
+                <form class="form-signin" (ngSubmit)="loginUser()" #loginForm="ngForm">
+                    <div class="form-group">
+                        <input type="text" id="uname" class="form-control" name="uname" autocomplete="off"
+                            #uname="ngModel" [(ngModel)]="userObject.uname" placeholder="Username"
+                            title="Please enter the username" required autofocus>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="upass" class="form-control" name="upass" autocomplete="off"
+                            #upass="ngModel" [(ngModel)]="userObject.upass" placeholder="Password"
+                            title="Please enter the password" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="authcode" class="form-control" *ngIf="this.tfaFlag" name="authcode"
+                            autocomplete="off" #authcode="ngModel" [(ngModel)]="userObject.authcode"
+                            placeholder="Two-Factor Auth code" title="Please enter the code" required>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit"
+                            [disabled]="uname?.errors?.required || upass?.errors?.required || (this.tfaFlag && authcode?.errors?.required)">Sign
+                            in</button>
+                    </div>
+
+
+                    <div class="form-group">
+                        <p style="text-align:center;">Want to reset login? <a [routerLink]="['/register']">Register
+                            here</a></p>
+                    </div>
+                    <div class="form-group">
+                        <p class="text-danger" style="text-align:center;" *ngIf="errorMessage">{{errorMessage}}</p>
+                    </div>
+                   
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

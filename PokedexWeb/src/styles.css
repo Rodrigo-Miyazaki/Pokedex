@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
+html, body {
+    min-height: 100vh;
+    height: auto;
+    margin: 0;
+  }
+
+  .h-100{
+    min-height: 100vh;
+    height: auto;
+    margin: 0;
+  }
+
+  .card-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .bg-pokemon{
+    min-height: 100vh;
+    height: auto;
+    background-image: url("assets/images/pokemon.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 100%;
+    margin: 0;
+  }
+  
+  .form-span{
+    font-size: 14px;
+}

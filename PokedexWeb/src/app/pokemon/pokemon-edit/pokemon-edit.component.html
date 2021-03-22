@@ -1,0 +1,177 @@
+<div class="container">
+    <form class="form-signin" (ngSubmit)="save(loginForm)" #loginForm="ngForm">
+        <div class="row mt-3 mb-3">
+
+            <div class="col-sm-12 col-md-4">
+                <div class="form-group">
+                    <span class="form-span">Número</span>
+                    <input type="text" id="number" class="form-control" name="number" autocomplete="off"
+                        #number="ngModel" [(ngModel)]="pokemon.number" autofocus required>
+                </div>
+
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <div class="form-group">
+                    <span class="form-span">Nome</span>
+                    <input type="text" id="name" class="form-control" name="name" autocomplete="off" #name="ngModel"
+                        [(ngModel)]="pokemon.name" title="Please enter the name" required autofocus>
+                </div>
+
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="form-group">
+                    <span class="form-span">Geração</span>
+                    <input type="text" id="type" class="form-control" name="generation" autocomplete="off"
+                        #generation="ngModel" [(ngModel)]="pokemon.generation" required autofocus>
+                </div>
+            </div>
+
+
+
+
+            <div class="col-sm-12 col-md-4">
+                <div class="form-group">
+                    <p class="form-span">Tipos</p>
+                    <ngx-bootstrap-multiselect [options]="myOptions" [(ngModel)]="pokemon.types" name="types">
+                    </ngx-bootstrap-multiselect>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="form-group ">
+                    <p class="form-span">Resistências</p>
+                    <ngx-bootstrap-multiselect [texts]="myTexts" [settings]="mySettings" [options]="myOptions" [(ngModel)]="pokemon.resistant" name="resistant">
+                    </ngx-bootstrap-multiselect>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="form-group">
+                    <p class="form-span">Fraquezas</p>
+                    <ngx-bootstrap-multiselect [texts]="myTexts" [settings]="mySettings" [options]="myOptions" [(ngModel)]="pokemon.weaknesses" name="weaknesses">
+                    </ngx-bootstrap-multiselect>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="form-group">
+                    <p class="form-span">Ataques Rápidos</p>
+                    <ngx-bootstrap-multiselect [texts]="myTexts" [settings]="mySettings"  [options]="fastAttacksOptions"  [(ngModel)]="fastAttacksSelecteds"  name="fastAttack">
+                    </ngx-bootstrap-multiselect>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="form-group">
+                    <p class="form-span">Ataques Especiais</p>
+                        <ngx-bootstrap-multiselect [texts]="myTexts" [settings]="mySettings"  [options]="specialAttacksOptions"  [(ngModel)]="specialAttacksSelecteds"  name="specialAttack">
+                        </ngx-bootstrap-multiselect>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="form-group">
+                    <span class="form-span">Peso Min.</span>
+                    <input type="text" id="minweight" class="form-control" name="minweight" autocomplete="off" #minweight="ngModel"
+                        [(ngModel)]="weight.minimum" autofocus>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="form-group">
+                    <span class="form-span">Peso Max.</span>
+                    <input type="text" id="maxweight" class="form-control" name="maxweight" autocomplete="off" #maxweight="ngModel"
+                        [(ngModel)]="weight.maximum" autofocus>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="form-group">
+                    <span class="form-span">Altura Min.</span>
+                    <input type="text" id="minheight" class="form-control" name="minheight" autocomplete="off" #minheight="ngModel"
+                        [(ngModel)]="height.minimum" autofocus>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="form-group">
+                    <span class="form-span">Altura max</span>
+                    <input type="text" id="maxheight" class="form-control" name="maxheight" autocomplete="off" #maxheight="ngModel"
+                        [(ngModel)]="height.maximum" autofocus>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="form-group">
+                    <span class="form-span">Distância</span>
+                    <input type="text" id="buddyDistance" class="form-control" name="buddyDistance" autocomplete="off" #buddyDistance="ngModel"
+                        [(ngModel)]="pokemon.buddyDistance" autofocus>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="form-group">
+                    <span class="form-span">Stamina Base</span>
+                    <input type="text" id="baseStamina" class="form-control" name="baseStamina" autocomplete="off" #baseStamina="ngModel"
+                        [(ngModel)]="pokemon.baseStamina" autofocus>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="form-group">
+                    <span class="form-span">Ataque Base</span>
+                    <input type="text" id="baseAttack" class="form-control" name="baseAttack" autocomplete="off" #baseAttack="ngModel"
+                        [(ngModel)]="pokemon.baseAttack" autofocus>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="form-group">
+                    <span class="form-span">Defesa Base</span>
+                    <input type="text" id="baseDefense" class="form-control" name="baseDefense" autocomplete="off" #baseDefense="ngModel"
+                        [(ngModel)]="pokemon.baseDefense" autofocus>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="form-group">
+                    <span class="form-span">Taxa de escape</span>
+                    <input type="text" id="baseFleeRate" class="form-control" name="baseFleeRate" autocomplete="off" #baseFleeRate="ngModel"
+                        [(ngModel)]="pokemon.baseFleeRate" autofocus>
+                </div>
+            </div>
+<!--             <div class="col-sm-12 col-md-4">
+                <div class="form-group">
+                    <span class="form-span">Requisitos para evoluir</span>
+                    <input type="text" id="nextEvolutionRequirements" class="form-control" name="nextEvolutionRequirements" autocomplete="off" #nextEvolutionRequirements="ngModel"
+                        [(ngModel)]="pokemon.nextEvolutionRequirements" autofocus>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="form-group">
+                    <span class="form-span">Proximas evoluções</span>
+                    <input type="text" id="nextEvolution" class="form-control" name="nextEvolution" autocomplete="off" #nextEvolution="ngModel"
+                        [(ngModel)]="pokemon.nextEvolution" autofocus>
+                </div>
+            </div> -->
+            <div class="col-sm-12 col-md-4">
+                <div class="form-group">
+                    <span class="form-span">Max CP</span>
+                    <input type="number" id="maxCP" class="form-control" name="maxCP" autocomplete="off" #maxCP="ngModel"
+                        [(ngModel)]="pokemon.maxCP" autofocus>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="form-group">
+                    <span class="form-span">Max HP</span>
+                    <input type="number" id="maxHP" class="form-control" name="maxHP" autocomplete="off" #maxHP="ngModel"
+                        [(ngModel)]="pokemon.maxHP" autofocus>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12">
+                <div class="form-group">
+                    <span class="form-span">Sobre</span>
+                    <textarea type="text" id="about" class="form-control" name="about" autocomplete="off"
+                        #about="ngModel" [(ngModel)]="pokemon.about" autofocus>
+                    </textarea>
+                </div>
+
+            </div>
+            <div class="col-md-12 col-sm-12 mb-3">
+                <button class="btn btn-danger float-right" type="button" routerLink="/pokemon"><i
+                        class="fas fa-times"></i> Cancelar</button>
+                <button class="btn btn-success float-right mr-3" type="submit"><i class="fas fa-save"></i>
+                    Salvar</button>
+
+            </div>
+        </div>
+    </form>
+</div>
