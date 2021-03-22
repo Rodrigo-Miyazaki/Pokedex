@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  url: "https://pokedex-app-rmzk.heroku.com/api"
+  url: "https://pokedex-api-rmzk.herokuapp.com/api"
 };
