@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   cols:any[] = [];
 
   constructor(private _loginService: LoginServiceService) {
-    this.getAuthDetails();
+    /* this.getAuthDetails(); */
   }
 
   ngOnInit() {
@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
     ]
   }
 
-  getAuthDetails() {
+/*   getAuthDetails() {
     this._loginService.getAuth().subscribe((data) => {
       const result = data.body
       if (data['status'] === 200) {
@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
         }
       }
     });
-  }
+  } */
 
   setup() {
     this._loginService.setupAuth().subscribe((data) => {
@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  confirm() {
+/*   confirm() {
     this._loginService.verifyAuth(this.authcode).subscribe((data) => {
       let result:any = {status: null,  message: null}
       result = data.body;
@@ -63,9 +63,9 @@ export class HomeComponent implements OnInit {
         this.errorMessage = result['message'];
       }
     });
-  }
+  } */
 
-  disabledTfa() {
+ /*  disabledTfa() {
     this._loginService.deleteAuth().subscribe((data) => {
       const result = data.body
       if (data['status'] === 200) {
@@ -74,6 +74,6 @@ export class HomeComponent implements OnInit {
         this.getAuthDetails();
       }
     });
-  }
+  } */
 
 }

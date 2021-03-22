@@ -31,7 +31,8 @@ export class LoginComponent implements OnInit {
       result = data.body;
       if (result['status'] === 200) {
         this._loginService.updateAuthStatus(true);
-        this._router.navigateByUrl('/pokemon');
+        this._loginService.updateAuthUser(this.userObject.uname);
+        this._router.navigate(['/pokemon']);
       }
       if (result['status'] === 206) {
         this.tfaFlag = true;

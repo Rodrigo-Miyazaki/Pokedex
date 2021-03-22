@@ -42,6 +42,10 @@ export class LoginServiceService {
     localStorage.setItem('isLoggedIn', value ? "true" : "false");
   }
 
+  updateAuthUser(uname: string) {
+    localStorage.setItem('uname', uname);
+  }
+
   getAuthStatus() {
     this._isLoggedIn = localStorage.getItem('isLoggedIn') == "true" ? true : false;
     return this._isLoggedIn
@@ -51,18 +55,19 @@ export class LoginServiceService {
     this._isLoggedIn = false;
     this.authSub.next(this._isLoggedIn);
     localStorage.setItem('isLoggedIn', "false")
+    localStorage.setItem('uname', "");
   }
 
-  getAuth() {
-    return this._http.get(`${environment.url}/tfa/setup`, { observe: 'response' });
+  getAuth(uname:string) {
+    return this._http.get(`${environment.url}/tfa/setup/${uname}`, { observe: 'response' });
   }
 
   deleteAuth() {
     return this._http.delete(`${environment.url}/tfa/setup`, { observe: 'response' });
   }
 
-  verifyAuth(token: any) {
-    return this._http.post(`${environment.url}/tfa/verify`, { token }, { observe: 'response' });
+  verifyAuth(token: any, uname:string) {
+    return this._http.post(`${environment.url}/tfa/verify`, { token: token, uname: uname }, { observe: 'response' });
   }
 
 }

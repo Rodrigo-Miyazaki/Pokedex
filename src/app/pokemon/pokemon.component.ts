@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoginServiceService } from 'src/app/services/login-service/login-service.service';
 import { PokemonServiceService } from '../services/pokemon-service/pokemon-service.service';
 
@@ -13,29 +13,36 @@ export class PokemonComponent implements OnInit {
   tfa: any = {};
   authcode: string = "";
   errorMessage: any = null;
-  cols:any[] = [];
-  pokemons:any[] = [];
-  totalRecords:number = 0;
+  cols: any[] = [];
+  pokemons: any[] = [];
+  totalRecords: number = 0;
   rowsByPage = 10;
   first = 0;
   skip = 0;
   totalPages = 0;
-  filter:string ="";
-  constructor(private _loginService: LoginServiceService, private router: Router, private pokemonService: PokemonServiceService) {
-    this.getAuthDetails();
+  filter: string = "";
+  uname: any;
+  constructor(private _loginService: LoginServiceService, private router: Router,
+    private pokemonService: PokemonServiceService) {
+    this.uname = localStorage.getItem("uname");
+    console.log(this.uname)
+    if (this.uname) {
+      this.getAuthDetails();
+    }
   }
 
   ngOnInit() {
     this.cols = [
-      {header: "Nome", field: "name"},
-      {header: "Geração", field: "generation"},
-      {header: "Tipos", field: "types"},
-      {header: "Quantidade de ataques", field: "qtdAttack"},
+      { header: "Nome", field: "name" },
+      { header: "Geração", field: "generation" },
+      { header: "Tipos", field: "types" },
+      { header: "Quantidade de ataques", field: "qtdAttack" },
     ]
 
   }
 
-  find(){
+
+  find() {
     let name = this.filter;
     console.log(name)
     let params = {
@@ -43,33 +50,33 @@ export class PokemonComponent implements OnInit {
       skip: this.skip,
       limit: this.rowsByPage
     }
-    if(this.filter){
-      this.pokemonService.findByName(this.filter, params).subscribe((res:any)=>{
+    if (this.filter) {
+      this.pokemonService.findByName(this.filter, params).subscribe((res: any) => {
         console.log(res);
-        if(res.body){
+        if (res.body) {
           console.log(res.body)
           this.totalRecords = res.body.totalRecords;
-          this.totalPages = Math.floor(this.totalRecords/10)+1
+          this.totalPages = Math.floor(this.totalRecords / 10) + 1
           this.pokemons = res.body.items;
         }
-  
+
       })
     } else {
-      this.pokemonService.findAll(params).subscribe((res:any)=>{
+      this.pokemonService.findAll(params).subscribe((res: any) => {
         console.log(res);
-        if(res.body){
+        if (res.body) {
           console.log(res.body)
           this.totalRecords = res.body.totalRecords;
-          this.totalPages = Math.floor(this.totalRecords/10)+1
+          this.totalPages = Math.floor(this.totalRecords / 10) + 1
           this.pokemons = res.body.items;
         }
-  
+
       })
     }
 
   }
 
-  nextPage(index:any){
+  nextPage(index: any) {
     console.log(index)
     this.first = index;
     this.skip = index * 10;
@@ -77,13 +84,14 @@ export class PokemonComponent implements OnInit {
   }
 
   getAuthDetails() {
-    this._loginService.getAuth().subscribe((data) => {
+    console.log(this.uname)
+    this._loginService.getAuth(this.uname).subscribe((data) => {
       const result = data.body
       if (data['status'] === 200) {
         console.log(result);
         if (result == null) {
           this.setup();
-          
+
         } else {
           this.tfa = result;
         }
@@ -103,8 +111,8 @@ export class PokemonComponent implements OnInit {
   }
 
   confirm() {
-    this._loginService.verifyAuth(this.authcode).subscribe((data) => {
-      let result:any = {status: null,  message: null}
+    this._loginService.verifyAuth(this.authcode, this.uname).subscribe((data) => {
+      let result: any = { status: null, message: null }
       result = data.body;
       if (result['status'] === 200) {
         console.log(result);
@@ -128,17 +136,17 @@ export class PokemonComponent implements OnInit {
     });
   }
 
-  criar(){
+  criar() {
     this.router.navigate(['pokemon/create']);
   }
 
-  edit(row:any){
-console.log(row)
-  this.router.navigate([`pokemon/edit/${row._id}`]);
+  edit(row: any) {
+    console.log(row)
+    this.router.navigate([`pokemon/edit/${row._id}`]);
   }
 
-  delete(row:any){
-    this.pokemonService.deleteById(row._id).subscribe(()=>{
+  delete(row: any) {
+    this.pokemonService.deleteById(row._id).subscribe(() => {
       this.find();
     })
   }

@@ -7,12 +7,12 @@
                 <form class="form-signin" (ngSubmit)="loginUser()" #loginForm="ngForm">
                     <div class="form-group">
                         <input type="text" id="uname" class="form-control" name="uname" autocomplete="off"
-                            #uname="ngModel" [(ngModel)]="userObject.uname" placeholder="Username"
+                            #uname="ngModel" [(ngModel)]="userObject.uname" placeholder="Username" [disabled]="this.tfaFlag"
                             title="Please enter the username" required autofocus>
                     </div>
                     <div class="form-group">
                         <input type="password" id="upass" class="form-control" name="upass" autocomplete="off"
-                            #upass="ngModel" [(ngModel)]="userObject.upass" placeholder="Password"
+                            #upass="ngModel" [(ngModel)]="userObject.upass" placeholder="Password" [disabled]="this.tfaFlag"
                             title="Please enter the password" required>
                     </div>
                     <div class="form-group">
